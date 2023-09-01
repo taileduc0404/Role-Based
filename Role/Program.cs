@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Role.Data;
+using Role.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI()///////////
     .AddDefaultTokenProviders();/////////////
+builder.Services.AddScoped<IFileService, FileService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
